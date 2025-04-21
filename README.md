@@ -40,7 +40,7 @@ A desktop-based Expense Tracker application built using Java and Swing. This app
 
 expense-tracker/ ├── README.md ├── src/ │ ├── Expense.java // Model class for each expense/income │ ├── ExpenseManager.java // Handles data operations │ ├── ExpenseTracker.java // GUI and app logic │ └── Main.java // Application entry point └── data/ └── expenses.csv // File for saving/loading transactions
 
-## 🚀 How to Run
+## How to Run
 
 1. Compile all `.java` files in the `src` folder.
 
@@ -52,7 +52,7 @@ javac src/*.java
 
 java src.Main
 
-**## 🧱 Class Breakdown**
+**## Class Breakdown**
 
 **### 1. `Expense.java`**
 
