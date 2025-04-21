@@ -52,27 +52,27 @@ javac src/*.java
 
 java src.Main
 
-** Class Breakdown**
+## Class Breakdown
 
-** 1. `Expense.java`**
+1. `Expense.java`
 
 - Represents a single transaction.
 
 - Fields: `date`, `type` (Income/Expense), `category`, `amount`, `description`.
 
-** 2. `ExpenseManager.java`**
+2. `ExpenseManager.java`
 
 - Manages the list of transactions.
 
 - Handles adding entries, calculating totals, and file operations (load/save CSV).
 
-** 3. `ExpenseTracker.java`**
+3. `ExpenseTracker.java`
 
 - Swing GUI: form inputs, buttons, table view.
 
 - Calls `ExpenseManager` methods to update UI and data.
 
-** 4. `Main.java`**
+4. `Main.java`
 
 - Starts the application by showing the GUI.
 
