@@ -9,12 +9,21 @@ public class Expense {
     private String description;
     private String date;
 
+    // Constructor with current date (used in addExpense)
     public Expense(String type, String category, double amount, String description) {
         this.type = type;
         this.category = category;
         this.amount = amount;
         this description = description;
-        this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        this.date = new Date();
+
+        // Constructor with specific date (used in fromCSV)
+    public Expense(String type, String category, double amount, String description, Date date) {
+        this.type = type;
+        this.category = category;
+        this.amount = amount;
+        this.description = description;
+        this.date = date;
     }
 
     public String getType() { return type; }
@@ -24,11 +33,13 @@ public class Expense {
     public String getDate() { return date; }
 
     public String toCSV() {
-        return type + "," + category + "," + amount + "," + description + "," + date;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return type + "," + category + "," + amount + "," + description + "," + sdf.format(date);
     }
 
     public static Expense fromCSV(String csv) {
-        String[] parts = csv.split(",");
+        try {
+            String[] parts = csv.split(",");
         if (parts.length != 5) {
             throw new IllegalArgumentException("Invalid CSV format");
         }
@@ -36,23 +47,20 @@ public class Expense {
         String category = parts[1];
         double amount = Double.parseDouble(parts[2]);
         String description = parts[3];
-        String date = parts[4];
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(parts[4]);
         return new Expense(type, category, amount, description, date);
+    }catch (Exception e) {
+        throw new RuntimeException("Failed to parse CSV: " + e.getMessage());
     }
-    public double getAmount() {
-        return amount;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
+}
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return "Expense{" +
-                "name='" + name + '\'' +
+                "type='" + type + '\'' +
+                ", category='" + category + '\'' +
                 ", amount=" + amount +
+                ", description='" + description + '\'' +
                 ", date=" + sdf.format(date) +
                 '}';
     }
