@@ -50,7 +50,7 @@ public class Expense {
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(parts[4]);
         return new Expense(type, category, amount, description, date);
     }catch (Exception e) {
-        throw new RuntimeException("Failed to parse CSV: " + e.getMessage());
+        throw new RuntimeException("Failed to parse CSV: " + e.getMessage());""
     }
 }
     @Override
